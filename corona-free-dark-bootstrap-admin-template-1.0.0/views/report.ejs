@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <!-- End layout styles -->
+  </head>
+
+  <body style="background-color:#191c24">
+    <div class="container-scroller">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item profile">
+            <button style="color: white;" class="btn-block navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+              <span class="mdi mdi-menu"></span>
+            </button>
+            <div class="profile-desc">
+              <div class="profile-pic">
+                <div class="count-indicator">
+                  <img class="img-xs rounded-circle " src="/images/faces/face15.jpg" alt="">
+                  <span class="count bg-success"></span>
+                </div>
+                <div class="profile-name">
+                  <h5 class="mb-0 font-weight-normal" id="username"></h5>
+                </div>
+              </div>
+              <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+              <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-dark rounded-circle">
+                      <i class="mdi mdi-calendar-today text-success"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <p class="preview-subject ellipsis mb-1 text-small">Log Out</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+          </li>
+          <li class="nav-item menu-items" id="home">
+            <a class="nav-link" href="#">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+              <span class="menu-title">Home</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items" id="dashboard">
+            <a class="nav-link" href="#">
+              <span class="menu-icon">
+                <i class="mdi mdi-speedometer"></i>
+              </span>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items" id="survey">
+            <a class="nav-link" href="#">
+              <span class="menu-icon">
+                <i class="mdi mdi-playlist-play"></i>
+              </span>
+              <span class="menu-title">Survey</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items" id="report">
+            <a class="nav-link" href="#">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+              <span class="menu-title">Report</span>
+            </a>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <span class="menu-icon">
+                <i class="mdi mdi-security"></i>
+              </span>
+              <span class="menu-title">Account</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="acc-text"><a class="nav-link" href="#" id="login"> Login </a></li>
+                <li class="acc-text"><a class="nav-link" href="#" id="register"> Admin </a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <% if (loggedIn == 'true') { 
+        %>
+          <table>
+            <thead>
+                <tr>
+                  <th>Timestamp</th><!--name in db: timestamp-->
+                  <th>Age</th><!--name in db: age-->
+                  <th>Gender</th><!--name in db: gender-->
+                  <th>Origin</th><!--name in db: origin-->
+                  <th>Relationship Status</th><!--name in db: relationshipStatus-->
+                  <th>Occupation</th><!--name in db: occupation-->
+                  <!-- Organizations is in a different table than the surveys table. Should we stil display this? Probably yes since it's part of the original survey?? -->
+                  <th>Affiliated Organizations</th>
+                  <th>Social Media User?</th><!--name in db: mediaUser-->
+                  <!-- Platforms is in a different table than the surveys table though. Should we stil display this? Probably yes since it's part of the original survey?? -->
+                  <th>Platforms Used</th>
+                  <th>Daily Social Media Usage</th><!--name in db: avgTime-->
+                  <th>How often SM are used without a purpose?</th><!--name in db: noPurpose-->
+                  <th>How often do SM distract you?</th><!--name in db: distractionFreq-->
+                  <th>Do you feel restless if you haven't used SM in a while?</th><!--name in db: restlessLvl-->
+                  <th>How easily distracted are you?</th><!--name in db: distractionSusceptability-->
+                  <th>How much are you bothered by worries?</th><!--name in db: botheredByWorries-->
+                  <th>How hard is it for you to concentrate?</th><!--name in db: difficultyConcentrating-->
+                  <th>How often do you compare yourself to others on SM?</th><!--name in db: comparisonFreq-->
+                  <th>How do you feel about these comparisons (prev. question)?</th><!--name in db: comparisonFeeling-->
+                  <th>How often do you look for validation on SM?</th><!--name in db: validationFreq-->
+                  <th>How often do you feel depressed or down?</th><!--name in db: depressionFreq-->
+                  <th>How frequently does your interest in daily activities fluctuate?</th><!--name in db: dailyInterestFluctuation-->
+                  <th>How often do you face sleep problems?</th><!--name in db: sleepProblemsFreq-->
+                  <th>Mental Health Score</th><!--name in db: mentalHealthScore-->
+               </tr>
+              </thead>
+            <tbody>
+              <% for (let i = 0; i < myResponses.length; i++) { %>
+                  <tr>
+                    <td><%= myResponses[i].timestamp %></td>
+                    <td><%= myResponses[i].age %></td>
+                    <td><%= myResponses[i].gender %></td>
+                    <td><%= myResponses[i].origin %></td>
+                    <td><%= myResponses[i].relationshipStatus %></td>
+                    <td><%= myResponses[i].occupation %></td>
+                    <td><%= myResponses[i].mediaUser %></td>
+                    <td><%= myResponses[i].avgTime %></td>
+                    <td><%= myResponses[i].noPurpose %></td>
+                    <td><%= myResponses[i].distractionFreq %></td>
+                    <td><%= myResponses[i].restlessLvl %></td>
+                    <td><%= myResponses[i].distractionSusceptability %></td>
+                    <td><%= myResponses[i].botheredByWorries %></td>
+                    <td><%= myResponses[i].difficultyConcentrating %></td>
+                    <td><%= myResponses[i].comparisonFreq %></td>
+                    <td><%= myResponses[i].comparisonFeeling %></td>
+                    <td><%= myResponses[i].validationFreq %></td>
+                    <td><%= myResponses[i].depressionFreq %></td>
+                    <td><%= myResponses[i].dailyInterestFluctuation %></td>
+                    <td><%= myResponses[i].sleepProblemsFreq %></td>
+                    <td><%= myResponses[i].mentalHealthScore %></td>
+                  </tr>
+                <% } 
+              %>
+            </tbody>
+          </table>
+        </div>
+              
+      <% } 
+                
+        else 
+        {%>
+            <h1>Please login to see this page</h1>
+            <form action="/login" method="get">
+                <button type="submit">Go to Login</button>
+            </form>
+        <% }
+   %>
+<script src="/vendors/js/vendor.bundle.base.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page -->
+<!-- End plugin js for this page -->
+<!-- inject:js -->
+<script src="/js/off-canvas.js"></script> 
+<script src="/js/hoverable-collapse.js"></script> 
+<script src="/js/misc.js"></script> 
+<script src="/js/settings.js"></script> 
+<script src="/js/todolist.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- endinject -->
+<!-- inject script to trigger gets from navbar -->
+<script src="/js/triggerGets.js"></script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- End layout styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="shortcut icon" href="/images/favicon.png" />
+
+    <!-- End layout styles -->
+  </head>
+  <body style="background-color:#191c24">
+    <!-- nav -->
+      <% if (loggedIn == 'true') 
+      { %>
+
+        <div class="container-scroller">
+          
+            <!-- partial:partials/_sidebar.html -->
+          <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+              <li class="nav-item profile">
+                <button style="color: white;" class="btn-block navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                  <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="profile-desc">
+                  <div class="profile-pic">
+                    <div class="count-indicator">
+                      <img class="img-xs rounded-circle " src="/images/faces/face15.jpg" alt="">
+                      <span class="count bg-success"></span>
+                    </div>
+                    <div class="profile-name">
+                      <h5 class="mb-0 font-weight-normal" id="username"></h5>
+                    </div>
+                  </div>
+                  <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-calendar-today text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1 text-small">Log Out</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+              </li>
+              <li class="nav-item menu-items" id="home">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="dashboard">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="survey">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                  </span>
+                  <span class="menu-title">Survey</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="report">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                  </span>
+                  <span class="menu-title">Report</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-security"></i>
+                  </span>
+                  <span class="menu-title">Account</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="acc-text"><a class="nav-link" href="#" id="login"> Login </a></li>
+                    <li class="acc-text"><a class="nav-link" href="#" id="register"> Admin </a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
+                  <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
+                    <h3 class="card-title text-left mb-3" style="color: black;" >You are already logged in!</h3>
+                    <h4 class="card-title text-left mb-3" style="color: black;">Would you like to log out?</h4>
+                    <form action="/" method="post">          
+                      <div class="text-center" >
+                        <button type="submit" class="btn btn-primary btn-block enter-btn">Logout</button>
+                      </div>
+                    </form>
+                      <form action="/report" method="get">
+                      <div class="text-center" >
+                        <button type="submit" class="btn btn-primary btn-block enter-btn">Return to Report</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- content-wrapper ends -->
+            </div>
+            <!-- row ends -->
+          </div>
+          <!-- page-body-wrapper ends -->
+        </div>
+      <% }
+      else if (loggedIn == 'username')
+      { %>
+        <div class="container-scroller">
+          <!-- partial:partials/_sidebar.html -->
+          <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+              <li class="nav-item profile">
+                <button style="color: white;" class="btn-block navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                  <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="profile-desc">
+                  <div class="profile-pic">
+                    <div class="count-indicator">
+                      <img class="img-xs rounded-circle " src="/images/faces/face15.jpg" alt="">
+                      <span class="count bg-success"></span>
+                    </div>
+                    <div class="profile-name">
+                      <h5 class="mb-0 font-weight-normal" id="username"></h5>
+                    </div>
+                  </div>
+                  <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-calendar-today text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1 text-small">Log Out</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+              </li>
+              <li class="nav-item menu-items" id="home">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="dashboard">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="survey">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                  </span>
+                  <span class="menu-title">Survey</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="report">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                  </span>
+                  <span class="menu-title">Report</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-security"></i>
+                  </span>
+                  <span class="menu-title">Account</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="acc-text"><a class="nav-link" href="#" id="login"> Login </a></li>
+                    <li class="acc-text"><a class="nav-link" href="#" id="register"> Admin </a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
+                  <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
+                    <h3 class="card-title text-left mb-3" style="color: black;" >Login</h3>
+                    <form action="/login" method="post">
+                      <div class="form-group">
+                        <label>Username *</label>
+                        <input required autofocus type="text" class="form-control p_input" id="username" name="username">
+                      </div>
+                      <p class="text-danger"><small>*Incorrect Username</small></p>
+                      <div class="form-group">
+                        <label>Password *</label>
+                        <input required type="text" class="form-control p_input" name="password" id="password">
+                      </div>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- content-wrapper ends -->
+            </div>
+            <!-- row ends -->
+          </div>
+          <!-- page-body-wrapper ends -->
+        </div>
+      <% }
+      else if (loggedIn == 'password')
+      { %>
+        <<div class="container-scroller">
+          <!-- partial:partials/_sidebar.html -->
+          <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+              <li class="nav-item profile">
+                <button style="color: white;" class="btn-block navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                  <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="profile-desc">
+                  <div class="profile-pic">
+                    <div class="count-indicator">
+                      <img class="img-xs rounded-circle " src="/images/faces/face15.jpg" alt="">
+                      <span class="count bg-success"></span>
+                    </div>
+                    <div class="profile-name">
+                      <h5 class="mb-0 font-weight-normal" id="username"></h5>
+                    </div>
+                  </div>
+                  <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                  <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item preview-item">
+                      <div class="preview-thumbnail">
+                        <div class="preview-icon bg-dark rounded-circle">
+                          <i class="mdi mdi-calendar-today text-success"></i>
+                        </div>
+                      </div>
+                      <div class="preview-item-content">
+                        <p class="preview-subject ellipsis mb-1 text-small">Log Out</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item nav-category">
+                <span class="nav-link">Navigation</span>
+              </li>
+              <li class="nav-item menu-items" id="home">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Home</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="dashboard">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                  </span>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="survey">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                  </span>
+                  <span class="menu-title">Survey</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items" id="report">
+                <a class="nav-link" href="#">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                  </span>
+                  <span class="menu-title">Report</span>
+                </a>
+              </li>
+              <li class="nav-item menu-items">
+                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                  <span class="menu-icon">
+                    <i class="mdi mdi-security"></i>
+                  </span>
+                  <span class="menu-title">Account</span>
+                  <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="auth">
+                  <ul class="nav flex-column sub-menu">
+                    <li class="acc-text"><a class="nav-link" href="#" id="login"> Login </a></li>
+                    <li class="acc-text"><a class="nav-link" href="#" id="register"> Admin </a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
+                  <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
+                    <h3 class="card-title text-left mb-3" style="color: black;" >Login</h3>
+                    <form action="/login" method="post">
+                      <div class="form-group">
+                        <label>Username *</label>
+                        <input required autofocus type="text" class="form-control p_input" id="username" name="username">
+                      </div>
+                      <div class="form-group">
+                        <label>Password *</label>
+                        <input required type="text" class="form-control p_input" name="password" id="password">
+                      </div>
+                      <p class="text-danger"><small>*Incorrect Password</small></p>
+                      <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- content-wrapper ends -->
+            </div>
+            <!-- row ends -->
+          </div>
+          <!-- page-body-wrapper ends -->
+        </div>
+      <% }
+      
+      else 
+      {%>
+      <div class="container-scroller">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item profile">
+              <button style="color: white;" class="btn-block navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                <span class="mdi mdi-menu"></span>
+              </button>
+              <div class="profile-desc">
+                <div class="profile-pic">
+                  <div class="count-indicator">
+                    <img class="img-xs rounded-circle " src="/images/faces/face15.jpg" alt="">
+                    <span class="count bg-success"></span>
+                  </div>
+                  <div class="profile-name">
+                    <h5 class="mb-0 font-weight-normal" id="username"></h5>
+                  </div>
+                </div>
+                <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item preview-item">
+                    <div class="preview-thumbnail">
+                      <div class="preview-icon bg-dark rounded-circle">
+                        <i class="mdi mdi-calendar-today text-success"></i>
+                      </div>
+                    </div>
+                    <div class="preview-item-content">
+                      <p class="preview-subject ellipsis mb-1 text-small">Log Out</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item nav-category">
+              <span class="nav-link">Navigation</span>
+            </li>
+            <li class="nav-item menu-items" id="home">
+              <a class="nav-link" href="#">
+                <span class="menu-icon">
+                  <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Home</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items" id="dashboard">
+              <a class="nav-link" href="#">
+                <span class="menu-icon">
+                  <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items" id="survey">
+              <a class="nav-link" href="#">
+                <span class="menu-icon">
+                  <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Survey</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items" id="report">
+              <a class="nav-link" href="#">
+                <span class="menu-icon">
+                  <i class="mdi mdi-table-large"></i>
+                </span>
+                <span class="menu-title">Report</span>
+              </a>
+            </li>
+            <li class="nav-item menu-items">
+              <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <span class="menu-icon">
+                  <i class="mdi mdi-security"></i>
+                </span>
+                <span class="menu-title">Account</span>
+                <i class="menu-arrow"></i>
+              </a>
+              <div class="collapse" id="auth">
+                <ul class="nav flex-column sub-menu">
+                  <li class="acc-text"><a class="nav-link" href="#" id="login"> Login </a></li>
+                  <li class="acc-text"><a class="nav-link" href="#" id="register"> Admin </a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+          <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+              <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
+                <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
+                  <h3 class="card-title text-left mb-3" style="color: black;" >Login</h3>
+                  <form action="/login" method="post">
+                    <div class="form-group">
+                      <label>Username *</label>
+                      <input required autofocus type="text" class="form-control p_input" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                      <label>Password *</label>
+                      <input required type="text" class="form-control p_input" name="password" id="password">
+                    </div>
+                  
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- content-wrapper ends -->
+          </div>
+          <!-- row ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+      </div>
+          <% }
+  %>
+  <!-- plugins:js -->
+  <script src="/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="/js/off-canvas.js"></script> 
+  <script src="/js/hoverable-collapse.js"></script> 
+  <script src="/js/misc.js"></script> 
+  <script src="/js/settings.js"></script> 
+  <script src="/js/todolist.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="/js/triggerGets.js"></script>
+ <!-- endinject -->
+  </body>
+</html>
+
