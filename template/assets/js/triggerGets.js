@@ -16,3 +16,7 @@ document.getElementById('login').addEventListener('click', function() {
 document.getElementById('register').addEventListener('click', function() {
     window.location.href = 'register';
 });
+
+document.getElementById('logout').addEventListener('click', function() {
+    window.location.href = '/';
+});
