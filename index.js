@@ -289,16 +289,15 @@ const knex = require('knex')({
 app.get('/', (req, res) => {
     res.render('index');
 });
-app.post('/', (req, res) => {
+app.post('/logout', (req, res) => {
     req.session.loggedIn = 'false';
     req.session.edit = 'false';
-    res.render('index')
+    res.redirect('/');
 })
 app.get('/index', (req, res) => {
     res.render('index');
 });
 app.get('/login', (req, res) => {
-    
     res.render('login', { loggedIn: req.session.loggedIn || 'false' });
 });
 app.post('/login', (req, res) => {
