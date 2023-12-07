@@ -25,9 +25,10 @@
   </head>
   <body style="background-color:#191c24">
     <style>
+      
          body {
-      background-color: #191c24;
-    }
+          background-color: #191c24;
+        }
 
     .auth {
       display: flex;
@@ -35,23 +36,30 @@
       justify-content: center;
       height: 100vh; /* Adjust height as needed */
     }
-
     .card {
-      background-color: rgb(100, 118, 167);
-      max-width: 100%;
-      width: 100%;
-    }
+    background-color: rgba(188, 186, 186, 0.897);
+    max-width: 75%; /* Adjust the max-width to 75% */
+    width: 100%;
+    margin-top: -100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+
+  }
 
     .card-body {
       color: black;
       padding: 5%;
+      height: 89;
     }
 
-    .owl-carousel .item img {
-      max-width: 70%;
+    .item img {
+      max-width: 50%;
       height: 220px;
-      width: 40%;
-      border-radius: 0px;
+      width: 10%;
+      border-radius: 10px;
+      justify-content: center;
+
     }
 
     .owl-carousel #owl-carousel-basic {
@@ -70,6 +78,28 @@
     .owl-carousel .owl-item {
       justify-content: center;
     }
+
+    .owl-loaded {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0;
+      transform: translate3d(0, 0, 0); /* Reset the translation to center images */
+    }
+
+    .preview-subject,
+  p {
+    color: rgb(5, 53, 84);
+    font-weight: bold; /* Make the text bold */
+  }
+
+  .text-medium {
+  font-weight: bold; /* You can adjust the font weight value as needed */
+  font-size: 16px; /* Adjust the font size as needed */
+  letter-spacing: 1px; /* Add letter spacing */
+  margin-bottom: 10px; /* Add some bottom margin for spacing */
+}
+
     </style>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
@@ -160,10 +190,10 @@
       <!-- partial -->
       
       <div class=" page-body-wrapper row">
-        <div class="row m-0 mx-auto">
+        <div class="row mb-0">
           <div class=" auth custom-background-2">
-            <div class="card col-md-8 mx-auto" style="background-color:rgb(100, 118, 167);">
-                <h4 class="card-title mx-auto" style="color: black;">Portfolio Slide</h4>
+            <div class="card col-md-4">
+                <h4 class="card-title mx-auto" style="color: rgb(5, 53, 84);">The Impact of Social Media on Mental Health</h4>
                 <div class="owl-carousel owl-theme  full-width owl-loaded" style="justify-content:center; align-items: center;" id="owl-carousel-basic">
                 <div class="owl-stage-outer" ><div class="owl-stage" style="transform: translate3d(-1178px, 0px, 0px); transition: all 0.25s ease 0s; width: 2790px;"><div class="owl-item cloned" style="width: 382.695px; margin-right: 0px;"><div class="item">
                     <img src="https://www.shutterstock.com/shutterstock/videos/1104752977/thumb/1.jpg?ip=x480" alt="Welcome to Provo" class="carousel-img mx-auto">
@@ -178,13 +208,13 @@
                       <div class="preview-item-content d-flex flex-grow">
                         <div class="flex-grow">
                           <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                            <h6 class="preview-subject">Mental Health</h6>
+                            <h6 class="text-medium" style= "color: rgb(5, 53, 84);">Mental Health</h6>
                           </div>
-                          <p class="text-muted">The current mental health statistics in Utah, and more specifically in Provo tell us that there are various factors that are contributing to the worsening of mental health over the years.</p>
-                          <p class ="text-muted">In recent years, we see a surge in mental health issues amongst younger age groups. In order to fully address this issue, we also need to understand the potential impact
+                          <p  class="text-medium" style="color: rgb(5, 53, 84);">The current mental health statistics in Utah, and more specifically in Provo tell us that there are various factors that are contributing to the worsening of mental health over the years.</p>
+                          <p  class="text-medium" style="color: rgb(5, 53, 84);">In recent years, we see a surge in mental health issues amongst younger age groups. In order to fully address this issue, we also need to understand the potential impact
                             of social media on mental health. 
                           </p>
-                          <p class="text-muted">Provo is mostly a college town, the population of Provo iis 50.9% of the population are those between ages 18 and 34. Additionally, another 23% of Utah's population are those under the age of 18. According to an overall screening of mental illnesses in America, "More than half a million people have reported signs of anxiety and/or depression, with Sept. reporting the highest rate of severity since the start of the pandemic. Anxiety screens were up by 634% from January and depression screens were up 873%)." Of those numbers, 78,000 youth reported suicidal Ideation. We really need to focus on mental illnesses among the young in America, and specifically in Provo, Utah. </p>
+                          <p  class="text-medium" style="color: rgb(5, 53, 84);">Provo is mostly a college town, the population of Provo iis 50.9% of the population are those between ages 18 and 34. Additionally, another 23% of Utah's population are those under the age of 18. According to an overall screening of mental illnesses in America, "More than half a million people have reported signs of anxiety and/or depression, with Sept. reporting the highest rate of severity since the start of the pandemic. Anxiety screens were up by 634% from January and depression screens were up 873%)." Of those numbers, 78,000 youth reported suicidal Ideation. We really need to focus on mental illnesses among the young in America, and specifically in Provo, Utah. </p>
                         </div>
                       </div>
                     </div>
