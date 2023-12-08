@@ -258,6 +258,7 @@
                                         <th>Media User</th>
                                         <th>Avg Time per Day</th>
                                         <th>Origin</th>
+                                        <th>Id</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -270,6 +271,7 @@
                                               <td><%= myResponses[iCount].mediaUser %></td>
                                               <td><%= myResponses[iCount].avgTime %></td>
                                               <td><%= myResponses[iCount].origin %></td>
+                                              <td><%= formResponses[iCount].responseId %></td>
                                           </tr>
                                           <% } %>
                                     </tbody>
@@ -302,6 +304,7 @@
                               <th>Avg Time per Day</th>
                               <th>Mental Health Score</th>
                               <th>Origin</th>
+                              <th>Id</th>
                               <th>View</th>
                             </tr>
                           </thead>
@@ -317,6 +320,7 @@
                                     <td><%= formResponses[iCount].avgTime %></td>
                                     <td><%= Math.round(formResponses[iCount].mentalHealthScore) %></td>
                                     <td><%= formResponses[iCount].origin %></td>
+                                    <td><%= formResponses[iCount].responseId %></td>
                                     <td style="text-align: center;"> 
                                       <form action="/viewReport" method="get">
                                           <input id="timestampSelect" type="hidden" name="timestampSelect" value="<%= formResponses[iCount].timestamp %>">
