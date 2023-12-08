@@ -21165,5 +21165,9 @@ div.tagsinput {
   background: url("../images/carousel/tech.jpg");
   background-size: cover;
 }
+.custom-background-4{
+  background-image: url('https://images.inc.com/uploaded_files/image/1920x1080/getty_819843444_411516.jpg');
+  background-size: cover;
+}
 
 /*# sourceMappingURL=maps/style.css.map */

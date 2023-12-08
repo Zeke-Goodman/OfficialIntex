@@ -25,9 +25,10 @@
   </head>
   <body style="background-color:#191c24">
     <style>
+      
          body {
-      background-color: #191c24;
-    }
+          background-color: #191c24;
+        }
 
     .auth {
       display: flex;
@@ -35,35 +36,70 @@
       justify-content: center;
       height: 100vh; /* Adjust height as needed */
     }
-
     .card {
-      background-color: rgb(100, 118, 167);
-      max-width: 100%;
-      width: 100%;
-    }
+    background-color: rgba(188, 186, 186, 0.897);
+    max-width: 75%; /* Adjust the max-width to 75% */
+    width: 100%;
+    margin-top: -100px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+
+  }
 
     .card-body {
       color: black;
       padding: 5%;
+      height: 89;
     }
 
-    .owl-carousel .item img {
-      max-width: 30%;
-      height: auto;
-      width: 50%;
+    .item img {
+      max-width: 50%;
+      height: 220px;
+      width: 10%;
       border-radius: 10px;
+      justify-content: center;
+
+    }
+
+    .owl-carousel #owl-carousel-basic {
+      justify-content: center;
       align-items: center;
     }
-    .owl-carousel .owl-stage {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 0;
-      }
 
-      .owl-carousel .owl-item {
-        justify-content: center;
-      }
+    .owl-carousel .owl-stage {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0;
+      transform: translate3d(0, 0, 0); /* Reset the translation to center images */
+    }
+
+    .owl-carousel .owl-item {
+      justify-content: center;
+    }
+
+    .owl-loaded {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 0;
+      transform: translate3d(0, 0, 0); /* Reset the translation to center images */
+    }
+
+    .preview-subject,
+  p {
+    color: rgb(5, 53, 84);
+    font-weight: bold; /* Make the text bold */
+  }
+
+  .text-medium {
+  font-weight: bold; /* You can adjust the font weight value as needed */
+  font-size: 16px; /* Adjust the font size as needed */
+  letter-spacing: 1px; /* Add letter spacing */
+  margin-bottom: 10px; /* Add some bottom margin for spacing */
+}
+
     </style>
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
@@ -93,7 +129,7 @@
                     </div>
                   </div>
                   <div class="preview-item-content">
-                    <p class="preview-subject ellipsis mb-1 text-small" id="logout" href="#">Log Out</p>
+                    <p class="preview-subject ellipsis mb-1 text-small" id="logout" href="#"><form action="/logout" method="post"><button>Log Out</button></form></p>
                   </div>
                 </a>
               </div>
@@ -154,18 +190,17 @@
       <!-- partial -->
       
       <div class=" page-body-wrapper row">
-        <div class="row m-0">
+        <div class="row mb-0">
           <div class=" auth custom-background-2">
-            <div class="card col-md-8 mx-auto" style="background-color:rgb(100, 118, 167);">
-              <div class="card-body px-5 py-5">
-                <h4 class="card-title" style="color: black;">Portfolio Slide</h4>
-                <div class="owl-carousel owl-theme full-width owl-carousel-dash portfolio-carousel owl-loaded owl-drag" id="owl-carousel-basic">
-                <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1178px, 0px, 0px); transition: all 0.25s ease 0s; width: 3000px;"><div class="owl-item cloned" style="width: 382.695px; margin-right: -10px;"><div class="item">
-                    <img src="https://www.shutterstock.com/shutterstock/videos/1104752977/thumb/1.jpg?ip=x480" alt="Welcome to Provo" class="carousel-img">
+            <div class="card col-md-4">
+                <h4 class="card-title mx-auto" style="color: rgb(5, 53, 84);">The Impact of Social Media on Mental Health</h4>
+                <div class="owl-carousel owl-theme  full-width owl-loaded" style="justify-content:center; align-items: center;" id="owl-carousel-basic">
+                <div class="owl-stage-outer" ><div class="owl-stage" style="transform: translate3d(-1178px, 0px, 0px); transition: all 0.25s ease 0s; width: 2790px;"><div class="owl-item cloned" style="width: 382.695px; margin-right: 0px;"><div class="item">
+                    <img src="https://www.shutterstock.com/shutterstock/videos/1104752977/thumb/1.jpg?ip=x480" alt="Welcome to Provo" class="carousel-img mx-auto">
                   </div></div><div class="owl-item" style="width: 382.695px; margin-right: 10px;"><div class="item">
-                    <img src="https://i.insider.com/62bd952334938100189fb9a9?width=1136&format=jpeg" alt="Social Media Platforms" class="carousel-img">
+                    <img src="https://i.insider.com/62bd952334938100189fb9a9?width=1136&format=jpeg" alt="Social Media Platforms" class="carousel-img mx-auto">
                   </div></div><div class="owl-item" style="width: 382.695px; margin-right: 10px;"><div class="item">
-                    <img src="https://www.ffkr.com/wp-content/uploads/2018/10/Provo-City-Center-Temple-Exterior-West-Elevation.jpg" alt="" class="carousel-img">
+                    <img src="https://www.ffkr.com/wp-content/uploads/2018/10/Provo-City-Center-Temple-Exterior-West-Elevation.jpg" alt="" class="carousel-img mx-auto">
                   </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="mdi mdi-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="mdi mdi-chevron-right"></i></button></div><div class="owl-dots disabled"></div></div>
                 <div class="d-flex py-4">
                   <div class="preview-list w-100">
@@ -173,13 +208,13 @@
                       <div class="preview-item-content d-flex flex-grow">
                         <div class="flex-grow">
                           <div class="d-flex d-md-block d-xl-flex justify-content-between">
-                            <h6 class="preview-subject">Mental Health</h6>
+                            <h6 class="text-medium" style= "color: rgb(5, 53, 84);">Mental Health</h6>
                           </div>
-                          <p class="text-muted">The current mental health statistics in Utah, and more specifically in Provo tell us that there are various factors that are contributing to the worsening of mental health over the years.</p>
-                          <p class ="text-muted">In recent years, we see a surge in mental health issues amongst younger age groups. In order to fully address this issue, we also need to understand the potential impact
+                          <p  class="text-medium" style="color: rgb(5, 53, 84);">The current mental health statistics in Utah, and more specifically in Provo tell us that there are various factors that are contributing to the worsening of mental health over the years.</p>
+                          <p  class="text-medium" style="color: rgb(5, 53, 84);">In recent years, we see a surge in mental health issues amongst younger age groups. In order to fully address this issue, we also need to understand the potential impact
                             of social media on mental health. 
                           </p>
-                          <p class="text-muted">Provo is mostly a college town, the population of Provo iis 50.9% of the population are those between ages 18 and 34. Additionally, another 23% of Utah's population are those under the age of 18. According to an overall screening of mental illnesses in America, "More than half a million people have reported signs of anxiety and/or depression, with Sept. reporting the highest rate of severity since the start of the pandemic. Anxiety screens were up by 634% from January and depression screens were up 873%)." Of those numbers, 78,000 youth reported suicidal Ideation. We really need to focus on mental illnesses among the young in America, and specifically in Provo, Utah. </p>
+                          <p  class="text-medium" style="color: rgb(5, 53, 84);">Provo is mostly a college town, the population of Provo iis 50.9% of the population are those between ages 18 and 34. Additionally, another 23% of Utah's population are those under the age of 18. According to an overall screening of mental illnesses in America, "More than half a million people have reported signs of anxiety and/or depression, with Sept. reporting the highest rate of severity since the start of the pandemic. Anxiety screens were up by 634% from January and depression screens were up 873%)." Of those numbers, 78,000 youth reported suicidal Ideation. We really need to focus on mental illnesses among the young in America, and specifically in Provo, Utah. </p>
                         </div>
                       </div>
                     </div>

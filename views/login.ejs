@@ -21,7 +21,20 @@
 
     <!-- End layout styles -->
   </head>
+
   <body style="background-color:#191c24">
+    <style>
+      
+      .custom-background-3 {
+        background-image: url('https://images.inc.com/uploaded_files/image/1920x1080/getty_819843444_411516.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: #191c24; /* Fallback color if the image is not available or doesn't cover the entire area */
+      }
+      
+    </style>
     <!-- nav -->
       <% if (loggedIn == 'true') 
       { %>
@@ -115,7 +128,7 @@
           </nav>
           <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="row w-100 m-0">
-              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+              <div class="content-wrapper full-page-wrapper d-flex align-items-center ">
                 <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
                   <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
                     <h3 class="card-title text-left mb-3" style="color: black;" >You are already logged in!</h3>
@@ -212,7 +225,7 @@
                 </a>
               </li>
               <li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <a class="nav-link" data-toggle="collapse" href="" aria-expanded="false" aria-controls="auth">
                   <span class="menu-icon">
                     <i class="mdi mdi-security"></i>
                   </span>
@@ -230,7 +243,7 @@
           </nav>
           <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="row w-100 m-0">
-              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth">
                 <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
                   <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
                     <h3 class="card-title text-left mb-3" style="color: black;" >Login</h3>
@@ -348,7 +361,7 @@
           </nav>
           <div class="container-fluid page-body-wrapper full-page-wrapper">
             <div class="row w-100 m-0">
-              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+              <div class="content-wrapper full-page-wrapper d-flex align-items-center auth custom-background-4 login-bg">
                 <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
                   <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
                     <h3 class="card-title text-left mb-3" style="color: black;" >Login</h3>
@@ -467,7 +480,7 @@
         </nav>
         <div class="container-fluid page-body-wrapper full-page-wrapper">
           <div class="row w-100 m-0">
-            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center custom-background-4 login-bg">
               <div class="card col-lg-4 mx-auto" style="background-color: darksalmon;">
                 <div class="card-body px-5 py-5" style="background-color: darksalmon;" >
                   <h3 class="card-title text-left mb-3" style="color: black;" >Login</h3>
