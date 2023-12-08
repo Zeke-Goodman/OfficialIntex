@@ -15,7 +15,9 @@
 <h1>Mental Health and Social Media</h1>
 Mental health globally is declining, we are having a surge of mental health issues due to the increase in technologies and post-COVID19. Utah people are also a part of the epidemic, and we wanted to investigate the link between social media and mental health.
 
-      <a href="https://provo-mental-balance.org" target="_blank"></a>
+Take a look at our [Mental Health Website](https://provo-mental-balance.org)
+
+
 
 <h1>What we did:</h1>
 
