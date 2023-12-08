@@ -396,8 +396,6 @@
                 </div>
             </div>
                <br><br>
-               <label for="mentalHealthScore">Your Mental Health Score: </label>
-               <span id="mentalHealthScoreText"></span>
                </form>
              </div>
             </div>
@@ -446,6 +444,7 @@
            for (const key in formData) {
                if (formData.hasOwnProperty(key) && !excludedQuestions.includes(key)) {
                    const value = parseInt(formData[key]);
+                   console.log(formData[key]);
                    if (!isNaN(value)) {
                        total += value;
                    } else {
