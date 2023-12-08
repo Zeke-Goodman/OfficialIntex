@@ -1,11 +1,4 @@
-<table>
-  <tr>
-    <td>
 
-       <h3>Mental Health and Social Media</h3>
-    </td>
-  </tr>
-</table>
 
 <!-- - Link for website
 - Admin user and password
