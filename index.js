@@ -1,7 +1,20 @@
+
+//// Zein Mosarsaa, Ezekiel Goodman, Benjamin Zapata, Fletcher Williams
+
+// Purpose of the project: Find the link between Mental health and social media based on responses from our survey.
+//Undertsanding the implications of using social media a lot on mental health and specifically creating a mental health score.
+// Using social media more can cause you to be more prone towards depression.
+
+
+
+
+
+
 // // let express = require("express")
 // // let app = express()
 // // const serveStatic = require('serve-static');
 // // const path = require('path');
+
 
 
 // // const publicPath = path.join(__dirname, 'template/assets'); // Update the path accordingly
