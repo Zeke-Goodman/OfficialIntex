@@ -21,6 +21,8 @@
     <!-- End layout styles -->
   </head>
 
+  
+
   <body style="background-color:#191c24">
     <div class="container-scroller">
       <!-- partial:partials/_sidebar.html -->
@@ -110,65 +112,243 @@
       </nav>
       <% if (loggedIn == 'true') { 
         %>
-          <table>
-            <thead>
-                <tr>
-                  <th>Timestamp</th><!--name in db: timestamp-->
-                  <th>Age</th><!--name in db: age-->
-                  <th>Gender</th><!--name in db: gender-->
-                  <th>Origin</th><!--name in db: origin-->
-                  <th>Relationship Status</th><!--name in db: relationshipStatus-->
-                  <th>Occupation</th><!--name in db: occupation-->
-                  <!-- Organizations is in a different table than the surveys table. Should we stil display this? Probably yes since it's part of the original survey?? -->
-                  <th>Affiliated Organizations</th>
-                  <th>Social Media User?</th><!--name in db: mediaUser-->
-                  <!-- Platforms is in a different table than the surveys table though. Should we stil display this? Probably yes since it's part of the original survey?? -->
-                  <th>Platforms Used</th>
-                  <th>Daily Social Media Usage</th><!--name in db: avgTime-->
-                  <th>How often SM are used without a purpose?</th><!--name in db: noPurpose-->
-                  <th>How often do SM distract you?</th><!--name in db: distractionFreq-->
-                  <th>Do you feel restless if you haven't used SM in a while?</th><!--name in db: restlessLvl-->
-                  <th>How easily distracted are you?</th><!--name in db: distractionSusceptability-->
-                  <th>How much are you bothered by worries?</th><!--name in db: botheredByWorries-->
-                  <th>How hard is it for you to concentrate?</th><!--name in db: difficultyConcentrating-->
-                  <th>How often do you compare yourself to others on SM?</th><!--name in db: comparisonFreq-->
-                  <th>How do you feel about these comparisons (prev. question)?</th><!--name in db: comparisonFeeling-->
-                  <th>How often do you look for validation on SM?</th><!--name in db: validationFreq-->
-                  <th>How often do you feel depressed or down?</th><!--name in db: depressionFreq-->
-                  <th>How frequently does your interest in daily activities fluctuate?</th><!--name in db: dailyInterestFluctuation-->
-                  <th>How often do you face sleep problems?</th><!--name in db: sleepProblemsFreq-->
-                  <th>Mental Health Score</th><!--name in db: mentalHealthScore-->
-               </tr>
-              </thead>
-            <tbody>
-              <% for (let i = 0; i < myResponses.length; i++) { %>
-                  <tr>
-                    <td><%= myResponses[i].timestamp %></td>
-                    <td><%= myResponses[i].age %></td>
-                    <td><%= myResponses[i].gender %></td>
-                    <td><%= myResponses[i].origin %></td>
-                    <td><%= myResponses[i].relationshipStatus %></td>
-                    <td><%= myResponses[i].occupation %></td>
-                    <td><%= myResponses[i].mediaUser %></td>
-                    <td><%= myResponses[i].avgTime %></td>
-                    <td><%= myResponses[i].noPurpose %></td>
-                    <td><%= myResponses[i].distractionFreq %></td>
-                    <td><%= myResponses[i].restlessLvl %></td>
-                    <td><%= myResponses[i].distractionSusceptability %></td>
-                    <td><%= myResponses[i].botheredByWorries %></td>
-                    <td><%= myResponses[i].difficultyConcentrating %></td>
-                    <td><%= myResponses[i].comparisonFreq %></td>
-                    <td><%= myResponses[i].comparisonFeeling %></td>
-                    <td><%= myResponses[i].validationFreq %></td>
-                    <td><%= myResponses[i].depressionFreq %></td>
-                    <td><%= myResponses[i].dailyInterestFluctuation %></td>
-                    <td><%= myResponses[i].sleepProblemsFreq %></td>
-                    <td><%= myResponses[i].mentalHealthScore %></td>
-                  </tr>
-                <% } 
-              %>
-            </tbody>
-          </table>
+        <div class="container-fluid page-body-wrapper">
+          <!-- partial:partials/_navbar.html -->
+          
+          <!-- partial -->
+          <div class="main-panel">
+            <div class="content-wrapper">
+              <div class="row">
+                <div class="col-md-4 grid-margin stretch-card">
+                  <div class="card" style="background-color: #191c24;">
+                    <div class="card-body">
+                      <div class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand">
+                          <div class="">
+
+                          </div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink">
+                          <div class="">
+
+                          </div>
+                        </div>
+                      </div>
+                      <h4 class="card-title" style="text-align: center;" >Mental Health Score</h4>
+                      <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                        
+                          <div class="text-md-center" style="display: block; height: 211px; width: 422px;">
+                            <% var progressPercentage = Math.round(myResponses[0].mentalHealthScore); %>
+                            <% var dashArray = 565.48; %>
+                            <% var dashOffset = dashArray - (progressPercentage / 100) * dashArray; %>
+                            
+                            <svg width="200" height="200" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(-90deg)">
+                                <!-- Background Circle -->
+                                <circle r="90" cx="100" cy="100" fill="transparent" stroke="#e0e0e0" stroke-width="40" stroke-dasharray="<%= dashArray %>px" stroke-dashoffset="0"></circle>
+                                
+                                <!-- Dynamic Progress Circle -->
+                                <circle r="90" cx="100" cy="100" stroke="#3fe45b" stroke-width="40" stroke-linecap="butt" stroke-dashoffset="<%= dashOffset %>px" fill="transparent" stroke-dasharray="<%= dashArray %>px"></circle>
+                                
+                                <!-- Text -->
+                                <text x="71px" y="115px" fill="#ffffff" font-size="52px" font-weight="bold" style="transform:rotate(90deg) translate(0px, -196px)"><%= progressPercentage %></text>
+                            </svg>
+                          </div>
+                        
+                      </div>                  
+                      
+      
+                      <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                        <div class="text-md-center text-xl-left text-white">
+                          <h6 class="mb-1">Transfer to Paypal</h6>
+                          <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        </div>
+                        <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                          <h6 class="font-weight-bold mb-0">$236</h6>
+                        </div>
+                      </div>
+                      <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
+                        <div class="text-md-center text-xl-left text-white">
+                          <h6 class="mb-1">Tranfer to Stripe</h6>
+                          <p class="text-muted mb-0">07 Jan 2019, 09:12AM</p>
+                        </div>
+                        <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
+                          <h6 class="font-weight-bold mb-0">$593</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-8 grid-margin stretch-card">
+                  <div class="card" style="background-color: #191c24;">
+                    <div class="card-body">
+                      <div class="d-flex flex-row justify-content-between">
+                        <h4 class="card-title mb-1">Survey Response</h4>
+                        <p class="text-muted mb-1">Your data status</p>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title" style="color: black;">Organisations</h4>
+                                <div class="table-responsive">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Num</th>
+                                        <th>Organisation Name</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% for (let iCount = 0; iCount < myOrganisations.length; iCount++) { %>
+                                          <tr>
+                                              <td><%= myOrganisations[iCount].orgNum %></td>
+                                              <td><%= myOrganisations[iCount].orgName %></td>
+                                          </tr>
+                                          <% } %>
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                        <div class="col-md-6 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title" style="color: black;">Platforms</h4>
+                                <div class="table-responsive">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Num</th>
+                                        <th>Platform Name</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% for (let iCount = 0; iCount < myPlatform.length; iCount++) { %>
+                                          <tr>
+                                              <td><%= myPlatform[iCount].platformNum %></td>
+                                              <td><%= myPlatform[iCount].platformName %></td>
+                                          </tr>
+                                          <% } %>
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body">
+                              <h4 class="card-title" style="color: black;">Demographics</h4>
+                                <div class="table-responsive">
+                                  <table class="table table-striped">
+                                    <thead>
+                                      <tr>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>Relationship Status</th>
+                                        <th>Occupation</th>
+                                        <th>Media User</th>
+                                        <th>Avg Time per Day</th>
+                                        <th>Origin</th>
+                                        <th>Id</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% for (let iCount = 0; iCount < myResponses.length; iCount++) { %>
+                                          <tr>
+                                              <td><%= myResponses[iCount].age %></td>
+                                              <td><%= myResponses[iCount].gender %></td>
+                                              <td><%= myResponses[iCount].relationshipStatus %></td>
+                                              <td><%= myResponses[iCount].occupation %></td>
+                                              <td><%= myResponses[iCount].mediaUser %></td>
+                                              <td><%= myResponses[iCount].avgTime %></td>
+                                              <td><%= myResponses[iCount].origin %></td>
+                                              <td><%= formResponses[iCount].responseId %></td>
+                                          </tr>
+                                          <% } %>
+                                    </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row ">
+                <div class="col-12 grid-margin">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title" style="color: black;">Responses</h4>
+                      <div class="table-responsive">
+                        <table class="table table-striped">
+                          <thead>
+                            <tr>
+                              <th>Timestamp</th>
+                              <th>Age</th>
+                              <th>Gender</th>
+                              <th>Relationship Status</th>
+                              <th>Occupation</th>
+                              <th>Media User</th>
+                              <th>Avg Time per Day</th>
+                              <th>Mental Health Score</th>
+                              <th>Origin</th>
+                              <th>Id</th>
+                              <th>View</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% for (let iCount = 0; iCount < formResponses.length; iCount++) { %>
+                                <tr>
+                                    <td><%= new Date(formResponses[iCount].timestamp).toLocaleString('en-US', { timeZone: 'UTC', hour12: false }) %></td>
+                                    <td><%= formResponses[iCount].age %></td>
+                                    <td><%= formResponses[iCount].gender %></td>
+                                    <td><%= formResponses[iCount].relationshipStatus %></td>
+                                    <td><%= formResponses[iCount].occupation %></td>
+                                    <td><%= formResponses[iCount].mediaUser %></td>
+                                    <td><%= formResponses[iCount].avgTime %></td>
+                                    <td><%= Math.round(formResponses[iCount].mentalHealthScore) %></td>
+                                    <td><%= formResponses[iCount].origin %></td>
+                                    <td><%= formResponses[iCount].responseId %></td>
+                                    <td style="text-align: center;"> 
+                                      <form action="/viewReport/<%= formResponses[iCount].responseId %>" method="get">
+                                          <input id="responseId" type="hidden" name="responseId" value="<%= formResponses[iCount].responseId %>">
+                                          <button type="submit">View</button>
+                                      </form>
+                                  </td>
+                                </tr>
+                                <% } %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+              <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2021</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin template</a> from Bootstrapdash.com</span>
+              </div>
+            </footer>
+            <!-- partial -->
+          </div>
+          <!-- main-panel ends -->
         </div>
               
       <% } 
@@ -181,6 +361,8 @@
             </form>
         <% }
    %>
+
+
 <script src="/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
