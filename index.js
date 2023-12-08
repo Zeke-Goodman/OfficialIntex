@@ -264,6 +264,13 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+app.use((req, res, next) => {
+    if (!req.secure && req.get("x-forwarded-proto") !== "https") {
+        return res.redirect("https://" + req.get("host") + req.url);
+    }
+    next();
+})
+
 app.set("view engine", "ejs");
 // Serve static files from the 'template/assets' directory
 app.use(express.static(publicPath, {
