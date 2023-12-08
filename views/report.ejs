@@ -322,8 +322,8 @@
                                     <td><%= formResponses[iCount].origin %></td>
                                     <td><%= formResponses[iCount].responseId %></td>
                                     <td style="text-align: center;"> 
-                                      <form action="/viewReport" method="get">
-                                          <input id="timestampSelect" type="hidden" name="timestampSelect" value="<%= formResponses[iCount].timestamp %>">
+                                      <form action="/viewReport/<%= formResponses[iCount].responseId %>" method="get">
+                                          <input id="responseId" type="hidden" name="responseId" value="<%= formResponses[iCount].responseId %>">
                                           <button type="submit">View</button>
                                       </form>
                                   </td>

@@ -279,7 +279,7 @@ const knex = require('knex')({
     connection: {
         host: process.env.RDS_HOSTNAME || 'localhost',
         user: process.env.RDS_USERNAME || 'postgres',
-        password: process.env.RDS_PASSWORD || '6EzP9PwM',
+        password: process.env.RDS_PASSWORD || 'hi from11',
         database: process.env.RDS_DB_NAME || 'intexLocal',
         port: process.env.RDS_PORT || 5432,
         ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
@@ -426,14 +426,27 @@ app.get('/report', (req, res) => {
 //     });
 // });
 
-app.get('/viewReport', (req, res) => {
+// app.get('/edit/:userId', (req, res) => {
+//     let loggedIn = req.session.loggedIn || 'true';
+//     let edit = 'true';
+//     let userId = req.params.userId;
+//     knex.select('userId', 'username', 'password').from('users').where('userId', userId).then(users => {
+//         res.render('register', {myUsers : users, loggedIn: loggedIn, edit: edit});
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json({err});
+//     });
+// });
+
+app.get('/viewReport/:responseId', (req, res) => {
     let loggedIn = req.session.loggedIn || 'true';
     let view =  'true';
+    let responseId = req.params.responseId;
     let timestamp = req.query.timestampSelect;
     
-    const organisationsQuery = knex.select().from('organisations').where('timeStamp', timestamp);
-    const platformQuery = knex.select().from('platform').where('timestamp', timestamp);
-    const responsesQuery = knex.select().from('responses').where('timestamp', timestamp);
+    const organisationsQuery = knex.select().from('organisations').where('responseId', responseId);
+    const platformQuery = knex.select().from('platform').where('responseId', responseId);
+    const responsesQuery = knex.select().from('responses').where('responseId', responseId);
     const responsesQuery1 = knex.select().from('responses');
 
     // Use Promise.all to execute both queries concurrently
