@@ -279,7 +279,7 @@ const knex = require('knex')({
     connection: {
         host: process.env.RDS_HOSTNAME || 'localhost',
         user: process.env.RDS_USERNAME || 'postgres',
-        password: process.env.RDS_PASSWORD || 'hi from11',
+        password: process.env.RDS_PASSWORD || '6EzP9PwM',
         database: process.env.RDS_DB_NAME || 'intexLocal',
         port: process.env.RDS_PORT || 5432,
         ssl: process.env.DB_SSL ? {rejectUnauthorized: false} : false
@@ -330,7 +330,7 @@ app.post('/login', (req, res) => {
 })
 app.get('/register', (req, res) => {
     knex.select().from('users').then( users => {
-        let loggedIn = req.session.loggedIn || 'true';
+        let loggedIn = req.session.loggedIn || 'false';
         let edit = req.session.edit || 'false';
      res.render('register', {myUsers : users, loggedIn: loggedIn, edit: edit})
     })
@@ -341,7 +341,7 @@ app.post('/register', (req, res) => {
     })
 });
 app.get('/edit/:userId', (req, res) => {
-    let loggedIn = req.session.loggedIn || 'true';
+    let loggedIn = req.session.loggedIn || 'false';
     let edit = 'true';
     let userId = req.params.userId;
     knex.select('userId', 'username', 'password').from('users').where('userId', userId).then(users => {
@@ -376,96 +376,87 @@ app.get('/survey', (req, res) => {
 });
 
 
-// app.get('/report', (req, res) => {
-//     let loggedIn = req.session.loggedIn || 'true';
-//     knex.select().from('organisations').where('timeStamp', "2022-04-18 19:18:47").then( organisations => {
-//         res.render('report', {myOrganisations : organisations, loggedIn: loggedIn})
-//     });
-//     knex.select().from('platform').where('timestamp', "2022-04-18 19:18:47").then( platform => {
-//         res.render('report', {myPlatform : platform})
-//     });
-// });
+app.post('/filterReport', (req, res) => {
+    // Assuming you get the new responseId from the request body or parameters
+     // Adjust based on your data
+    const filterColumn = req.body.filterColumn
+    // Update req.session.responseId with the new value
+    
+    req.session.filterColumn = filterColumn;
+    req.session.filter = 'true'
+    res.redirect('/report');
+});
+
+app.post('/report', (req, res) => {
+    // Assuming you get the new responseId from the request body or parameters
+    const newResponseId = req.body.newResponseId; // Adjust based on your data
+    // Update req.session.responseId with the new value
+    req.session.responseId = newResponseId;
+    res.redirect('/report');
+});
+
 
 app.get('/report', (req, res) => {
-    let loggedIn = req.session.loggedIn || 'true';
-    let view = req.session.view || 'false';
-    let timestamp = "2022-04-18 19:18:47";
+    let loggedIn = req.session.loggedIn || 'false';
+    let responseId = req.session.responseId || 122;
+    let filter = req.session.filter || 'false'
     
-    const organisationsQuery = knex.select().from('organisations').where('timeStamp', timestamp);
-    const platformQuery = knex.select().from('platform').where('timestamp', timestamp);
-    const responsesQuery = knex.select().from('responses').where('timestamp', timestamp);
-    const responsesQuery1 = knex.select().from('responses');
+    const organisationsQuery = knex.select()
+        .from('organisations')
+        .innerJoin('responses', 'organisations.timeStamp', 'responses.timestamp')
+        .where('responses.responseId', responseId);
 
-    // Use Promise.all to execute both queries concurrently
-    Promise.all([organisationsQuery, platformQuery, responsesQuery, responsesQuery1])
-        .then(([organisations, platform, responses, responses2]) => {
-            // Render the 'report' view and pass the combined data
-            res.render('report', { myOrganisations: organisations, 
-                                        myPlatform: platform, 
-                                        myResponses: responses, 
-                                        formResponses: responses2, 
-                                        loggedIn: loggedIn,
-                                        view: view});
-        })
-        .catch(error => {
-            // Handle errors if any
-            console.error('Error fetching data:', error);
-            res.status(500).send('Internal Server Error');
-        });
-});
+    const platformQuery = knex.select()
+        .from('platform')
+        .innerJoin('responses', 'platform.timestamp', 'responses.timestamp')
+        .where('responses.responseId', responseId);
 
-// app.get('/edit/:userId', (req, res) => {
-//     let loggedIn = req.session.loggedIn || 'true';
-//     let edit = 'true';
-//     let userId = req.params.userId;
-//     knex.select('userId', 'username', 'password').from('users').where('userId', userId).then(users => {
-//         res.render('register', {myUsers : users, loggedIn: loggedIn, edit: edit});
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).json({err});
-//     });
-// });
-
-// app.get('/edit/:userId', (req, res) => {
-//     let loggedIn = req.session.loggedIn || 'true';
-//     let edit = 'true';
-//     let userId = req.params.userId;
-//     knex.select('userId', 'username', 'password').from('users').where('userId', userId).then(users => {
-//         res.render('register', {myUsers : users, loggedIn: loggedIn, edit: edit});
-//     }).catch(err => {
-//         console.log(err);
-//         res.status(500).json({err});
-//     });
-// });
-
-app.get('/viewReport/:responseId', (req, res) => {
-    let loggedIn = req.session.loggedIn || 'true';
-    let view =  'true';
-    let responseId = req.params.responseId;
-    let timestamp = req.query.timestampSelect;
-    
-    const organisationsQuery = knex.select().from('organisations').where('responseId', responseId);
-    const platformQuery = knex.select().from('platform').where('responseId', responseId);
     const responsesQuery = knex.select().from('responses').where('responseId', responseId);
-    const responsesQuery1 = knex.select().from('responses');
+
+        if (filter === 'true') {
+            const responsesQuery1 = knex.select().from('responses').where(req.session.filterColumn, responseId);
+            Promise.all([organisationsQuery, platformQuery, responsesQuery, responsesQuery1])
+            .then(([organisations, platform, responses, responses2]) => {
+                // Render the 'report' view and pass the combined data
+                res.render('report', { myOrganisations: organisations, 
+                                            myPlatform: platform, 
+                                            myResponses: responses, 
+                                            formResponses: responses2, 
+                                            loggedIn: loggedIn,
+                                            view: view});
+                req.session.filter = 'true'
+            })
+            .catch(error => {
+                // Handle errors if any
+                console.error('Error fetching data:', error);
+                res.status(500).send('Internal Server Error');
+            });
+        } 
+        
+        else {
+            const responsesQuery1 = knex.select().from('responses');
+            Promise.all([organisationsQuery, platformQuery, responsesQuery, responsesQuery1])
+            .then(([organisations, platform, responses, responses2]) => {
+                // Render the 'report' view and pass the combined data
+                res.render('report', { myOrganisations: organisations, 
+                                            myPlatform: platform, 
+                                            myResponses: responses, 
+                                            formResponses: responses2, 
+                                            loggedIn: loggedIn});
+            })
+            .catch(error => {
+                // Handle errors if any
+                console.error('Error fetching data:', error);
+                res.status(500).send('Internal Server Error');
+            });
+        }
+    
 
     // Use Promise.all to execute both queries concurrently
-    Promise.all([organisationsQuery, platformQuery, responsesQuery, responsesQuery1])
-        .then(([organisations, platform, responses, responses2]) => {
-            // Render the 'report' view and pass the combined data
-            res.render('report', { myOrganisations: organisations, 
-                                        myPlatform: platform, 
-                                        myResponses: responses, 
-                                        formResponses: responses2, 
-                                        loggedIn: loggedIn,
-                                        view: view });
-        })
-        .catch(error => {
-            // Handle errors if any
-            console.error('Error fetching data:', error);
-            res.status(500).send('Internal Server Error');
-        });
+
 });
+
+
 
 
 app.listen(port, () => console.log("Server is listening on port", port));
