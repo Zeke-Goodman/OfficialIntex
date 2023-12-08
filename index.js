@@ -414,6 +414,18 @@ app.get('/report', (req, res) => {
         });
 });
 
+// app.get('/edit/:userId', (req, res) => {
+//     let loggedIn = req.session.loggedIn || 'true';
+//     let edit = 'true';
+//     let userId = req.params.userId;
+//     knex.select('userId', 'username', 'password').from('users').where('userId', userId).then(users => {
+//         res.render('register', {myUsers : users, loggedIn: loggedIn, edit: edit});
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json({err});
+//     });
+// });
+
 app.get('/viewReport', (req, res) => {
     let loggedIn = req.session.loggedIn || 'true';
     let view =  'true';
